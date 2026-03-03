@@ -4,6 +4,7 @@ import com.Sanket.ERP.Dto.ProjectDTO;
 import com.Sanket.ERP.entity.Accesories;
 import com.Sanket.ERP.entity.Project;
 import com.Sanket.ERP.entity.User;
+import com.Sanket.ERP.entity.enums.Projectstatus;
 import com.Sanket.ERP.repositories.AccessoryRepository;
 import com.Sanket.ERP.repositories.ProjectRepository;
 import com.Sanket.ERP.repositories.UserRepository;
@@ -35,6 +36,11 @@ public class ProjectServiceImp implements ProjectService {
         return projectRepository.findAll().stream()
                 .map(this::mapToDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Project> findByStatus(Projectstatus projectsatus){
+        return projectRepository.findByStatus(projectsatus);
     }
 
     @Override

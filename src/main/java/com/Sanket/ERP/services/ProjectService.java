@@ -1,5 +1,7 @@
 package com.Sanket.ERP.services;
 import com.Sanket.ERP.Dto.ProjectDTO;
+import com.Sanket.ERP.entity.Project;
+import com.Sanket.ERP.entity.enums.Projectstatus;
 
 import java.util.List;
 
@@ -12,6 +14,8 @@ public interface ProjectService {
     ProjectDTO getProjectById(Long id);
 
     List<ProjectDTO> getAllProjects();
+
+    List<Project> findByStatus(Projectstatus projectsatus);
 
     void assignUserToProject(Long projectId, Long userId);
     void assignAccessoryToProject(Long projectId, String serialNumber);
