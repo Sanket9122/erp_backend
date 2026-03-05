@@ -35,36 +35,37 @@ public class UserProjectController {
     public ResponseEntity<ProjectDTO> getUserProject(Authentication authentication) {
         // Get current authenticated user
         String userEmail = authentication.getName();
-        
+
         // Fetch user by email
         Optional<User> userOpt = userRepository.findByEmail(userEmail);
         if (userOpt.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        
+
         User user = userOpt.get();
         if (user.getCurrentProject() == null) {
             return ResponseEntity.notFound().build();
         }
-        
+
         // Get project details
         ProjectDTO project = projectService.getProjectById(user.getCurrentProject().getProjectId());
         return ResponseEntity.ok(project);
     }
-
-    // API 2: Get number of members in a specific project
-    @GetMapping("/{projectId}/member-count")
-    public ResponseEntity<Map<String, Integer>> getProjectMemberCount(@PathVariable Long projectId) {
-        // Get project details
-        ProjectDTO project = projectService.getProjectById(projectId);
-        
-        // Count team members
-        int memberCount = project.getTeamsize();
-        
-        Map<String, Integer> response = new HashMap<>();
-        response.put("projectId", projectId.intValue());
-        response.put("memberCount", memberCount);
-        
-        return ResponseEntity.ok(response);
-    }
 }
+
+//    // API 2: Get number of members in a specific project
+//    @GetMapping("/{projectId}/member-count")
+//    public ResponseEntity<Map<String, Integer>> getProjectMemberCount(@PathVariable Long projectId) {
+//        // Get project details
+//        ProjectDTO project = projectService.getProjectById(projectId);
+//
+//        // Count team members
+//        int memberCount = project.getTeamsize();
+//
+//        Map<String, Integer> response = new HashMap<>();
+//        response.put("projectId", projectId.intValue());
+//        response.put("memberCount", memberCount);
+//
+//        return ResponseEntity.ok(response);
+//    }
+//}

@@ -13,7 +13,7 @@ public class AccesoryController {
 
     private final AccesoryServiceImp accessoryService;
 
-    @PostMapping
+    @PostMapping("add-accesory")
     public Accesories add(@RequestBody Accesories accessory) {
         return accessoryService.addAccessory(accessory);
     }

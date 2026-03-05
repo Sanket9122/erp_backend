@@ -22,7 +22,7 @@ public class ProjectController {
     }
 
     // 2. Get all projects for the dashboard
-    @GetMapping
+    @GetMapping("/available")
     public ResponseEntity<List<ProjectDTO>> getAllProjects() {
         return ResponseEntity.ok(projectService.getAllProjects());
     }
